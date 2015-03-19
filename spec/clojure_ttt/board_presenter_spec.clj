@@ -20,14 +20,10 @@
     (it "returns row of single digit numbers with correct space in between"
       (should= "  1  |  2  |  3  |  4  |\n"
                (value-row-string '(1 2 3 4)))))
-  (describe "#create-row-value-list"
-    (it "returns a list of values from the start and end index of board"
-      (should= [4 5 6]
-               (create-row-value-list 3 6 (board/new-board 3)))))
   (describe "#value-block-string"
     (it "returns a string of 3 rows containing values"
       (should= "     |     |     |\n  1  |  2  |  3  |\n     |     |     |\n------------------\n"
-               (value-block-string 0 3 (board/new-board 3)))))
+               (value-block-string [1 2 3] 3 (board/new-board 3)))))
   (describe "#board-string"
     (it "returns a string with board output string"
       (should= "     |     |     |\n  1  |  2  |  3  |\n     |     |     |\n------------------\n     |     |     |\n  4  |  5  |  6  |\n     |     |     |\n------------------\n     |     |     |\n  7  |  8  |  9  |\n     |     |     |\n------------------\n" 

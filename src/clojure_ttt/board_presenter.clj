@@ -10,23 +10,15 @@
 (defn row-separator [width]
   (repeat-string width "------"))
 
-(defn value-row-string [value-list]
-  (str (reduce str (for [value value-list] (str "  " value "  |"))) "\n"))
+(defn value-row-string [value-coll]
+  (str (reduce str (for [value value-coll] (str "  " value "  |"))) "\n"))
 
-(defn create-row-value-list [start end board]
-  (subvec board start end))
-
-(defn value-block-string [index width board]
+(defn value-block-string [row-coll width board]
   (str (blank-line-separator width)
-       (value-row-string (create-row-value-list index (+ index width) board))
+       (value-row-string row-coll)
        (blank-line-separator width)
        (row-separator width)))
 
-(defn board-string
-  [board]
+(defn board-string [board]
   (let [width (board/board-width board)]
-    (loop [index 0 string ""]
-      (cond
-        (< index (count board))
-          (recur (+ width index) (str string (value-block-string index width board)))
-        :else string))))
+    (apply str (map #(value-block-string % width board) (partition width board)))))
