@@ -1,8 +1,16 @@
 (ns clojure-ttt.ttt-rules
   (:require [clojure-ttt.board :as board]))
 
+(defn filter-by-index [indexes coll]
+    (keep-indexed #(when ((set indexes) %1) %2) coll))
+
 (defn contains-same-pieces [coll]
   (apply = coll))
+
+(defn get-diagonal-indexes [width]
+  (apply map #(take width (iterate (partial + %1) %2))
+         [[(inc width) (dec width)]
+          [0 (dec width)]]))
 
 (defn separate-into-rows [width board]
   (partition width board))
@@ -10,15 +18,23 @@
 (defn separate-into-columns [width board]
   (apply map vector (separate-into-rows width board)))
 
+(defn separate-into-diagonals [width board]
+  (map #(filter-by-index % board) (get-diagonal-indexes width)))
+
 (defn has-winner-from-separation [separated-coll]
   (some true? (map contains-same-pieces separated-coll)))
 
-(defn has-horizontal-winner [board]
-  (has-winner-from-separation (separate-into-rows (board/board-width board) board)))
+(defn has-horizontal-winner [width board]
+  (has-winner-from-separation (separate-into-rows width board)))
 
-(defn has-vertical-winner [board]
-  (has-winner-from-separation (separate-into-columns (board/board-width board) board)))
+(defn has-vertical-winner [width board]
+  (has-winner-from-separation (separate-into-columns width board)))
 
-(defn has-diagonal-winner [board]
-  ())
+(defn has-diagonal-winner [width board]
+  (has-winner-from-separation (separate-into-diagonals width board)))
 
+(defn has-winner [board]
+  (let [width (board/board-width board)]
+    (or (has-horizontal-winner width board)
+        (has-vertical-winner width board)
+        (has-diagonal-winner width board))))
