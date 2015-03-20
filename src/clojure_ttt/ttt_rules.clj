@@ -21,20 +21,24 @@
 (defn separate-into-diagonals [width board]
   (map #(filter-by-index % board) (get-diagonal-indexes width)))
 
-(defn has-winner-from-separation [separated-coll]
+(defn has-winner-from-separation? [separated-coll]
   (some true? (map contains-same-pieces separated-coll)))
 
-(defn has-horizontal-winner [width board]
-  (has-winner-from-separation (separate-into-rows width board)))
+(defn has-horizontal-winner? [width board]
+  (has-winner-from-separation? (separate-into-rows width board)))
 
-(defn has-vertical-winner [width board]
-  (has-winner-from-separation (separate-into-columns width board)))
+(defn has-vertical-winner? [width board]
+  (has-winner-from-separation? (separate-into-columns width board)))
 
-(defn has-diagonal-winner [width board]
-  (has-winner-from-separation (separate-into-diagonals width board)))
+(defn has-diagonal-winner? [width board]
+  (has-winner-from-separation? (separate-into-diagonals width board)))
 
-(defn has-winner [board]
+(defn has-winner? [board]
   (let [width (board/board-width board)]
-    (or (has-horizontal-winner width board)
-        (has-vertical-winner width board)
-        (has-diagonal-winner width board))))
+    (or (has-horizontal-winner? width board)
+        (has-vertical-winner? width board)
+        (has-diagonal-winner? width board))))
+
+(defn is-valid-move? [move board]
+  (some #(= move (str %)) board))
+

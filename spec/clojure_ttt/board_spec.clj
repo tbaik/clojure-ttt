@@ -14,7 +14,11 @@
     (it "returns the width given the board"
       (should= 3
                (board-width (new-board 3)))))
+  (describe "parse-int"
+    (it "returns any int it finds in a string"
+      (should= 33
+               (parse-int "33"))))
   (describe "place-piece"
     (it "returns a board with piece placed in that spot"
       (should= [1 2 3 4 "O" 6 7 8 9]
-               (place-piece "O" 5 (new-board 3))))))
+               (place-piece "O" "5" (new-board 3))))))

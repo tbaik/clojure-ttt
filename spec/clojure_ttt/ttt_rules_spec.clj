@@ -36,42 +36,50 @@
     (it "returns diagonals as coll of 2 colls for both diagonals"
       (should= [[1 5 9] [3 5 7]]
                (separate-into-diagonals 3 (board/new-board 3)))))
-  (describe "#has-winner-from-separation"
+  (describe "#has-winner-from-separation?"
     (it "returns true if any of the given coll contains same pieces"
       (should= true
-               (has-winner-from-separation [["O" "O" "O"] [2 5 8] ["X" "O" 9]]))))
-  (describe "#has-horizontal-winner"
+               (has-winner-from-separation? [["O" "O" "O"] [2 5 8] ["X" "O" 9]]))))
+  (describe "#has-horizontal-winner?"
     (it "returns true if has winner on any row"
       (should= true
-               (has-horizontal-winner 3 ["O" "O" "O" 4 5 6 7 8 9]))
+               (has-horizontal-winner? 3 ["O" "O" "O" 4 5 6 7 8 9]))
       (should= true
-               (has-horizontal-winner 3 ["O" "X" "O" "X" "X" "X" "O" "X" "X"])))
+               (has-horizontal-winner? 3 ["O" "X" "O" "X" "X" "X" "O" "X" "X"])))
     (it "returns nil if all rows dont have a winner"
       (should= nil
-               (has-horizontal-winner 3 ["O" "X" "O" 4 5 6 7 8 9]))
+               (has-horizontal-winner? 3 ["O" "X" "O" 4 5 6 7 8 9]))
       (should= nil
-               (has-horizontal-winner 3 ["O" "X" "O" "X" "X" "O" "O" "X" "X"]))))
-  (describe "#has-vertical-winner"
+               (has-horizontal-winner? 3 ["O" "X" "O" "X" "X" "O" "O" "X" "X"]))))
+  (describe "#has-vertical-winner?"
     (it "returns true if has winner on any column"
       (should= true
-               (has-vertical-winner 3 ["O" "O" "O" "O" "X" "X" "O" "X" "O"])))
+               (has-vertical-winner? 3 ["O" "O" "O" "O" "X" "X" "O" "X" "O"])))
     (it "returns nil if all columns dont have a winner"
       (should= nil
-               (has-vertical-winner 3 ["O" "O" "O" "X" "X" "X" "O" "O" "O"]))))
-  (describe "#has-diagonal-winner"
+               (has-vertical-winner? 3 ["O" "O" "O" "X" "X" "X" "O" "O" "O"]))))
+  (describe "#has-diagonal-winner?"
     (it "returns true if has winner on a left diagonal"
       (should= true
-               (has-diagonal-winner 3 ["O" "X" "X" "X" "O" "X" "O" "X" "O"])))
+               (has-diagonal-winner? 3 ["O" "X" "X" "X" "O" "X" "O" "X" "O"])))
     (it "returns true if has winner on right diagonal"
       (should= true
-               (has-diagonal-winner 3 ["X" "X" "O" "X" "O" "X" "O" "X" "O"])))
+               (has-diagonal-winner? 3 ["X" "X" "O" "X" "O" "X" "O" "X" "O"])))
     (it "returns nil if does not have winner"
       (should= nil
-               (has-diagonal-winner 3 (board/new-board 3)))))
-  (describe "#has-winner"
+               (has-diagonal-winner? 3 (board/new-board 3)))))
+  (describe "#has-winner?"
     (it "returns true if there is a winner in any combination"
       (should= true
-               (has-winner ["O" "X" "O" "X" "O" "X" "O" "X" "O"])))
+               (has-winner? ["O" "X" "O" "X" "O" "X" "O" "X" "O"])))
     (it "returns nil if there is no winner"
       (should= nil
-               (has-winner (board/new-board 3))))))
+               (has-winner? (board/new-board 3)))))
+  (describe "#is-valid-move?"
+    (it "returns true if spot is not taken in the board"
+      (should= true
+               (is-valid-move? "1" (board/new-board 3))))
+    (it "returns nil if spot is taken in the board"
+      (should= nil
+               (is-valid-move? "1" (board/place-piece "O" "1" (board/new-board 3)))))))
+
