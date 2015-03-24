@@ -42,3 +42,7 @@
 (defn is-valid-move? [move board]
   (some #(= move (str %)) board))
 
+(defn game-over? [board]
+  (or (has-winner? board)
+      (board/full-board? board)))
+

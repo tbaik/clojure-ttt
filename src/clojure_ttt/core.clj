@@ -1,7 +1,8 @@
 (ns clojure-ttt.core
-(:require [clojure-ttt.ttt-game :as game]
-            [clojure-ttt.board :as board]))
+  (:require [clojure-ttt.ttt-game :as game]
+            [clojure-ttt.board :as board]
+            [clojure-ttt.ui :as ui]))
 
 (defn -main
   [& args]
-  (game/play [["Player 1" "O"] ["Player 2" "X"]] (board/new-board 3)))
+  (ui/print-winner (game/play [["Player 1" "X"] ["Player 2" "O"]] (board/new-board 3))))
