@@ -11,16 +11,6 @@
   (around [it]
     (with-out-str (it)))
 
-  (describe "#current-player-piece"
-    (it "returns the piece of the current player"
-      (should= "X"
-               (current-player-piece [["Player 1" "X"]["Player 2" "O"]]))))
-
-  (describe "#current-player-name"
-    (it "returns the name of current player"
-      (should= "Player 1"
-               (current-player-name [["Player 1" "X"]["Player 2" "O"]]))))
-
   (describe "#determine-winner"
     (it "returns tie when there is no winner"
       (should= "tie"
@@ -30,12 +20,6 @@
       (should= "X"
                (determine-winner [["Player 1" "X"]["Player 2" "O"]]
                                  ["X" "X" "X" "O" "O" 6 7 8 9]))))
-
-  (describe "#receive-human-move"
-    (it "returns a string for move to place if valid input on board"
-      (should= "1"
-               (with-in-str "1"
-                 (receive-human-move "Player 1" (board/new-board 3))))))
 
   (describe "#play"
     (it "presents board each time play begins and at the end, game ends when there's a winner"
