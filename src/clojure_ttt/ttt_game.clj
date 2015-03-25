@@ -2,7 +2,8 @@
   (:require [clojure-ttt.ttt-rules :as rules]
             [clojure-ttt.board :as board]
             [clojure-ttt.ui :as ui]
-            [clojure-ttt.players :as players]))
+            [clojure-ttt.player.players :as players]
+            [clojure-ttt.player.human-player :as human]))
 
 (defn determine-winner [players board]
   (if (rules/has-winner? board)
@@ -10,8 +11,8 @@
     "tie"))
 
 (defn play [players board]
-  (ui/print-board  board)
-  (let [move (players/receive-human-move (players/current-player-name players) board)]
+  (ui/print-board board)
+  (let [move (human/receive-human-move (players/current-player-name players) board)]
     (let [new-board (board/place-piece (players/current-player-piece players) move board)]
       (ui/print-placed-piece move (first players))
       (if (rules/game-over? new-board)
