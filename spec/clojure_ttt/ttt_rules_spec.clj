@@ -81,9 +81,12 @@
     (it "returns true if there is a winner in any combination"
       (should= true
                (has-winner? ["O" "X" "O" "X" "O" "X" "O" "X" "O"])))
-    (it "returns nil if there is no winner"
-      (should= nil
-               (has-winner? (board/new-board 3)))))
+    (it "returns false if there is no winner"
+      (should= false
+               (has-winner? (board/new-board 3))))
+    (it "returns false if there's less than 5 pieces placed"
+      (should= false
+               (has-winner? ["O" "O" "O" 4 5 6 7 8 9]))))
 
   (describe "#is-valid-move?"
     (it "returns true if spot is not taken in the board"

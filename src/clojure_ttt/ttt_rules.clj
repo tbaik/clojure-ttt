@@ -35,9 +35,10 @@
 
 (defn has-winner? [board]
   (let [width (board/board-width board)]
-    (or (has-horizontal-winner? width board)
-        (has-vertical-winner? width board)
-        (has-diagonal-winner? width board))))
+    (and (< (count (board/valid-moves board)) 5)
+         (or (has-horizontal-winner? width board)
+             (has-vertical-winner? width board)
+             (has-diagonal-winner? width board)))))
 
 (defn is-valid-move? [move board]
   (some #(= move (str %)) board))
