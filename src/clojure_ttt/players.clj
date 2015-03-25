@@ -3,6 +3,8 @@
             [clojure-ttt.board :as board]
             [clojure-ttt.ui :as ui]))
 
+(declare get-scores)
+
 (defn current-player-piece [players]
   (last (first players)))
 
@@ -30,12 +32,20 @@
   (let [has-winner (rules/has-winner? board)]
     (if (or has-winner (board/full-board? board))
       (game-evaluation has-winner (is-player-turn players))
-      (let [scores (map #(minimax (reverse players)
-                                  (board/place-piece
-                                    (current-player-piece players)
-                                    (str %)
-                                    board))
-                        (board/valid-moves board))]
+      (let [scores (get-scores players board)]
         (if (is-player-turn players)
           (apply min scores)
           (apply max scores))))))
+
+(defn get-scores [players board]
+  (map #(minimax (reverse players)
+                 (board/place-piece
+                   (current-player-piece players)
+                   (str %)
+                   board))
+       (board/valid-moves board)))
+
+(defn best-ai-move [players board]
+  (let [scores (get-scores players board)
+        valid-moves (vec (board/valid-moves board))]
+    (get valid-moves (.indexOf scores (apply max scores)))))
