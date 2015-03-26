@@ -1,6 +1,7 @@
 (ns clojure-ttt.ui-spec
   (:require [speclj.core :refer :all]
             [clojure-ttt.ui :refer :all]))
+
 (describe "ui"
   (around [it]
     (with-out-str (it)))
@@ -30,6 +31,12 @@
                (with-out-str
                  (print-invalid-move-error)))))
 
+  (describe "#print-invalid-input-error"
+    (it "prints that the input is invalid"
+      (should= "Invalid input! Try again.\n"
+               (with-out-str
+                 (print-invalid-input-error)))))
+
   (describe "#print-placed-piece"
     (it "prints where the piece was placed"
       (should= "Player 1 placed O at 2\n"
@@ -46,4 +53,15 @@
                (with-out-str (print-winner "tie"))))
     (it "prints for when there is a winner"
       (should= "X won!\n"
-               (with-out-str (print-winner "X"))))))
+               (with-out-str (print-winner "X")))))
+
+  (describe "#prompt-human-or-ai"
+    (it "prints correct text and takes an input"
+      (should= "Please type 1 to play against a Computer Player or 2 to play against another Person.\n"
+               (with-out-str (with-in-str "1" (prompt-human-or-ai))))))
+
+  (describe "#prompt-turn"
+    (it "prints correct text and takes an input"
+      (should= "Type 1 to go First(X), 2 to go Second(O), or 3 to exit.\n"
+               (with-out-str (with-in-str "2" (prompt-turn)))))))
+
