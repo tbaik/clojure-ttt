@@ -1,7 +1,7 @@
 (ns clojure-ttt.ttt-game-spec
   (:require [speclj.core :refer :all]
             [clojure-ttt.ttt-game :refer :all]
-            [clojure-ttt.board :as board]
+            [clojure-ttt.board.board :as board]
             [clojure-ttt.ui :as ui]))
 
 (defn make-input [coll]

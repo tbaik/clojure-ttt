@@ -1,5 +1,5 @@
-(ns clojure-ttt.board-presenter
-  (:require [clojure-ttt.board :as board]))
+(ns clojure-ttt.board.board-presenter
+  (:require [clojure-ttt.board.board :as board]))
 
 (defn repeat-string [times string]
   (apply str (concat (repeat times string) "\n")))

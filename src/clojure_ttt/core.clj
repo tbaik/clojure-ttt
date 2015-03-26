@@ -1,6 +1,6 @@
 (ns clojure-ttt.core
   (:require [clojure-ttt.ttt-game :as game]
-            [clojure-ttt.board :as board]
+            [clojure-ttt.board.board :as board]
             [clojure-ttt.ui :as ui]))
 
 (defn -main

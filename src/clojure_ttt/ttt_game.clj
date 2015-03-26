@@ -1,6 +1,6 @@
 (ns clojure-ttt.ttt-game
   (:require [clojure-ttt.ttt-rules :as rules]
-            [clojure-ttt.board :as board]
+            [clojure-ttt.board.board :as board]
             [clojure-ttt.ui :as ui]
             [clojure-ttt.player.players :as players]
             [clojure-ttt.player.player :as player]))

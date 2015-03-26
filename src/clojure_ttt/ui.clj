@@ -1,5 +1,5 @@
 (ns clojure-ttt.ui
-(:require [clojure-ttt.board-presenter :as board-presenter]))
+  (:require [clojure-ttt.board.board-presenter :as board-presenter]))
 
 (defn prompt [message]
   (println message)

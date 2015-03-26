@@ -1,7 +1,7 @@
-(ns clojure-ttt.board-presenter-spec
+(ns clojure-ttt.board.board-presenter-spec
   (:require [speclj.core :refer :all]
-            [clojure-ttt.board-presenter :refer :all]
-            [clojure-ttt.board :as board]))
+            [clojure-ttt.board.board-presenter :refer :all]
+            [clojure-ttt.board.board :as board]))
 
 (describe "board-presenter"
   (describe "#repeat-string"

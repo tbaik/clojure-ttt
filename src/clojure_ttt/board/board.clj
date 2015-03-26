@@ -1,4 +1,4 @@
-(ns clojure-ttt.board)
+(ns clojure-ttt.board.board)
 
 (defn new-board [width]
   (vec (range 1 (inc (* width width)))))

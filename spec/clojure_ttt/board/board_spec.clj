@@ -1,6 +1,6 @@
-(ns clojure-ttt.board-spec
+(ns clojure-ttt.board.board-spec
   (:require [speclj.core :refer :all]
-            [clojure-ttt.board :refer :all]))
+            [clojure-ttt.board.board :refer :all]))
 
 (describe "board"
   (describe "#new-board"
