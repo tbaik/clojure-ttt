@@ -1,5 +1,5 @@
 (ns clojure-ttt.ttt-rules
-  (:require [clojure-ttt.board :as board]))
+  (:require [clojure-ttt.board.board :as board]))
 
 (defn filter-by-index [indexes coll]
     (keep-indexed #(when ((set indexes) %1) %2) coll))

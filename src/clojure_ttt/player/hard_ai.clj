@@ -1,7 +1,7 @@
 (ns clojure-ttt.player.hard-ai
   (:require [clojure-ttt.ttt-rules :as rules]
             [clojure-ttt.player.players :as players]
-            [clojure-ttt.board :as board]))
+            [clojure-ttt.board.board :as board]))
 
 (declare get-scores)
 

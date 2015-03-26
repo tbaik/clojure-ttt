@@ -2,7 +2,7 @@
   (:require [speclj.core :refer :all]
             [clojure-ttt.player.human-player :refer :all]
             [clojure-ttt.ui :as ui]
-            [clojure-ttt.board :as board]))
+            [clojure-ttt.board.board :as board]))
 
 (describe "human-player"
   (describe "#receive-human-move"

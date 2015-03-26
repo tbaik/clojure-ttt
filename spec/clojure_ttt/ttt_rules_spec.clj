@@ -1,7 +1,7 @@
 (ns clojure-ttt.ttt-rules-spec
   (:require [speclj.core :refer :all]
             [clojure-ttt.ttt-rules :refer :all]
-            [clojure-ttt.board :as board]))
+            [clojure-ttt.board.board :as board]))
 (describe "ttt-rules"
   (describe "#filter-by-index"
     (it "returns the coll of values at the indexes given"
