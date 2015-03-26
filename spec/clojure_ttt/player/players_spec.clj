@@ -20,3 +20,4 @@
     (it "returns false if not human"
       (should= false
                (is-player-turn [["Computer 1" "X"]["Player 2" "O"]])))))
+

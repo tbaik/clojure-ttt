@@ -31,4 +31,4 @@
 (defn best-ai-move [players board]
   (let [scores (get-scores players board)
         valid-moves (vec (board/valid-moves board))]
-    (get valid-moves (.indexOf scores (apply max scores)))))
+    (str (get valid-moves (.indexOf scores (apply max scores))))))

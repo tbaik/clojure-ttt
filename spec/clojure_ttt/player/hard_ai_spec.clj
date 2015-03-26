@@ -51,7 +51,7 @@
 
   (describe "#best-ai-move"
     (it "returns the highest score's move from all of the minimax results"
-      (should= 5
+      (should= "5"
                (best-ai-move [["Computer 2" "O"]["Player 1" "X"]]
                              ["X" 2 3 4 5 6 7 8 9])))))
 

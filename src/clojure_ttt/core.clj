@@ -5,4 +5,4 @@
 
 (defn -main
   [& args]
-  (ui/print-winner (game/play [["Player 1" "X"] ["Player 2" "O"]] (board/new-board 3))))
+  (ui/print-winner (game/play [["Player 1" "X"] ["Computer 2" "O"]] (board/new-board 3))))
