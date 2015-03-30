@@ -5,20 +5,6 @@
 (describe "ui"
   (around [it]
     (with-out-str (it)))
-  (describe "#prompt"
-    (it "tests the input"
-      (should= "1"
-               (with-in-str "1"
-                 (prompt "enter some amount"))))
-    (it "tests the output"
-      (should= "enter some amount\n"
-               (with-out-str (with-in-str "1"
-                               (prompt "enter some amount"))))))
-  (describe "#print-message"
-    (it "tests the output"
-      (should= "hello world\n"
-               (with-out-str (print-message "hello world")))))
-
   (describe "#prompt-new-move"
     (it "prompts with the correct player name"
       (should= "Here is the Game Board, John. Please enter an empty space number.\n"
