@@ -42,9 +42,5 @@
   (describe "#undo-move"
     (it "returns a board with the given move undone."
       (should= [1 2 3 4 "X" 6 7 8 9]
-               (undo-move "1" ["O" 2 3 4 "X" 6 7 8 9]))))
-  (describe "#undo-turn"
-    (it "returns a board with the last two moves from the stack undone"
-      (should= [1 2 "O" 4 "X" 6 7 8 9]
-               (undo-turn '("1" "9" "3" "5") ["X" 2 "O" 4 "X" 6 7 8 "O"])))))
+               (undo-move "1" ["O" 2 3 4 "X" 6 7 8 9])))))
 

@@ -21,7 +21,7 @@
   (if (< (count @undo-stack) 2)
     (do (ui/print-undo-stack-empty-error)
       (play players board))
-    (let [new-board (board/undo-turn @undo-stack board)]
+    (let [new-board (player/undo-turn @undo-stack board)]
       (reset! undo-stack (pop (pop @undo-stack)))
       (play players new-board))))
 

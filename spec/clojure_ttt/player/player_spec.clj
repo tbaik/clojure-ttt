@@ -17,4 +17,10 @@
         (with-redefs [ai/best-ai-move (fn [_ _] (swap! times-asked-ai-move inc))]
           (should= 0 @times-asked-ai-move)
           (choose-move [["Computer 2" "O"]["Player 1" "X"]] [1 2 3 4 5 6 7 8 9])
-          (should= 1 @times-asked-ai-move))))))
+          (should= 1 @times-asked-ai-move)))))
+
+  (describe "#undo-turn"
+    (it "returns a board with the last two moves from the stack undone"
+      (should= [1 2 "O" 4 "X" 6 7 8 9]
+               (undo-turn '("1" "9" "3" "5") ["X" 2 "O" 4 "X" 6 7 8 "O"])))))
+

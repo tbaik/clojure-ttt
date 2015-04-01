@@ -2,6 +2,7 @@
   (:require [speclj.core :refer :all]
             [clojure-ttt.ttt-game :refer :all]
             [clojure-ttt.board.board :as board]
+            [clojure-ttt.player.player :as player]
             [clojure-ttt.ui :as ui]))
 
 (defn make-input [coll]
@@ -41,7 +42,7 @@
     (it "calls undo turn function if undo stack is not empty and pops two from stack after"
       (let [times-undo-called (atom 0)
             times-play-called (atom 0)]
-        (with-redefs [board/undo-turn (fn [_ _] (swap! times-undo-called inc))
+        (with-redefs [player/undo-turn (fn [_ _] (swap! times-undo-called inc))
                       play (fn [_ _] (swap! times-play-called inc))]
           (reset! undo-stack '("8" "9"))
           (should= 0 @times-undo-called)
