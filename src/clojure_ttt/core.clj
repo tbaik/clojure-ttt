@@ -7,4 +7,5 @@
 (defn -main
   [& args]
   (while true
+    (game/reset-undo-stack)
     (ui/print-winner (game/play (setup/create-players) (board/new-board 3)))))

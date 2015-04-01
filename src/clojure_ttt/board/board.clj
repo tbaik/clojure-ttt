@@ -17,3 +17,10 @@
 
 (defn full-board? [board]
   (= 0 (count (valid-moves board))))
+
+(defn undo-move [move board]
+  (assoc board (dec (parse-int move)) (parse-int move)))
+
+(defn undo-turn [undo-stack board]
+  (undo-move (peek (pop undo-stack))
+             (undo-move (peek undo-stack) board)))

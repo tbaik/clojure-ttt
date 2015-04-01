@@ -7,7 +7,7 @@
     (with-out-str (it)))
   (describe "#prompt-new-move"
     (it "prompts with the correct player name"
-      (should= "Here is the Game Board, John. Please enter an empty space number.\n"
+      (should= "Here is the Game Board, John. Please enter an empty space number or type U to undo the last turn.\n"
                (with-out-str (with-in-str "1"
                                (prompt-new-move "John"))))))
 
@@ -22,6 +22,12 @@
       (should= "Invalid input! Try again.\n"
                (with-out-str
                  (print-invalid-input-error)))))
+
+  (describe "#print-undo-stack-empty-error"
+    (it "prints that the undo stack is empty"
+      (should= "There are no moves to undo!\n"
+               (with-out-str
+                 (print-undo-stack-empty-error)))))
 
   (describe "#print-placed-piece"
     (it "prints where the piece was placed"

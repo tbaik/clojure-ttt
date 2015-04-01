@@ -4,7 +4,7 @@
 
 (defn receive-human-move [player-name board]
   (let [move (ui/prompt-new-move player-name)]
-    (if (rules/is-valid-move? move board)
+    (if (or (= "U" move) (rules/is-valid-move? move board))
       move
       (do
         (ui/print-invalid-move-error)

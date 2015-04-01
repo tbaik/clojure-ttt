@@ -9,5 +9,9 @@
     (it "returns a string for move to place if valid input on board"
       (should= "1"
                (with-redefs [ui/prompt-new-move (fn [_] "1")]
+                 (receive-human-move "Player 1" (board/new-board 3)))))
+    (it "allows U to be an input"
+      (should= "U"
+                (with-redefs [ui/prompt-new-move (fn [_] "U")]
                  (receive-human-move "Player 1" (board/new-board 3)))))))
 
