@@ -20,6 +20,8 @@
           (apply min scores)
           (apply max scores))))))
 
+(def minimax (memoize minimax))
+
 (defn get-scores [players board]
   (map #(minimax (reverse players)
                  (board/place-piece
