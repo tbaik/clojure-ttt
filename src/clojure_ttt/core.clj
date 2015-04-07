@@ -8,7 +8,6 @@
   (game/reset-undo-stack)
   (game/play (setup/create-players) (board/new-board 3)))
 
-(defn -main
-  [& args]
+(defn -main [& args]
   (while true
     (gameloop)))
