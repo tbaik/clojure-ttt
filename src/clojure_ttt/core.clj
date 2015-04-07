@@ -6,7 +6,7 @@
 
 (defn gameloop []
   (game/reset-undo-stack)
-  (ui/print-winner (game/play (setup/create-players) (board/new-board 3))))
+  (game/play (setup/create-players) (board/new-board 3)))
 
 (defn -main
   [& args]

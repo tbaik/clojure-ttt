@@ -12,3 +12,6 @@
 (defn undo-turn [undo-stack board]
   (board/undo-move (peek (pop undo-stack))
              (board/undo-move (peek undo-stack) board)))
+
+(defn undo-move [undo-stack board]
+  (board/undo-move (peek undo-stack) board))

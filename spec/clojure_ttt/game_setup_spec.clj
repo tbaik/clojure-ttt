@@ -1,7 +1,8 @@
 (ns clojure-ttt.game-setup-spec
   (:require [speclj.core :refer :all]
             [clojure-ttt.game-setup :refer :all]
-            [clojure-ttt.ui :as ui]))
+            [clojure-ttt.ui :as ui]
+            [clojure-ttt.ttt-game :as game]))
 
 (defn make-input [coll]
   (apply str (interleave coll (repeat "\n"))))
@@ -37,7 +38,7 @@
                  (build-turn))))
     (it "exits program given 3 as input"
       (let [times-exit-called (atom 0)]
-        (with-redefs [exit-system (fn [] (swap! times-exit-called inc))]
+        (with-redefs [game/exit-system (fn [] (swap! times-exit-called inc))]
           (should= 0 @times-exit-called)
           (with-in-str "3"
             (build-turn))

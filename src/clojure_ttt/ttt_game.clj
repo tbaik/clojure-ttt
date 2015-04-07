@@ -9,13 +9,16 @@
 
 (def undo-stack (atom '()))
 
+(defn exit-system []
+  (System/exit 0))
+
 (defn reset-undo-stack []
   (reset! undo-stack '()))
 
-(defn determine-winner [players board]
-  (if (rules/has-winner? board)
-    (players/current-player-piece players)
-    "tie"))
+(defn undo-one-move [players board]
+  (let [new-board (player/undo-move @undo-stack board)]
+    (reset! undo-stack (pop @undo-stack))
+    (play players new-board)))
 
 (defn try-undo-turn [players board]
   (if (< (count @undo-stack) 2)
@@ -24,6 +27,18 @@
     (let [new-board (player/undo-turn @undo-stack board)]
       (reset! undo-stack (pop (pop @undo-stack)))
       (play players new-board))))
+
+(defn choose-game-over-options [players board]
+  (let [option (ui/prompt-game-over-options)]
+    (case option
+      "1" nil
+      "2" (if (players/is-player-turn players)
+            (undo-one-move players board)
+            (try-undo-turn (reverse players) board))
+      "3" (exit-system)
+      (do
+        (ui/print-invalid-input-error)
+        (choose-game-over-options players board)))))
 
 (defn play [players board]
   (ui/print-board board)
@@ -36,5 +51,6 @@
         (if (rules/game-over? new-board)
           (do
             (ui/print-board new-board)
-            (determine-winner players new-board))
+            (ui/print-winner (rules/determine-winner players new-board))
+            (choose-game-over-options players new-board))
           (play (reverse players) new-board))))))

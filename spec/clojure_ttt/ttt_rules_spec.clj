@@ -3,6 +3,15 @@
             [clojure-ttt.ttt-rules :refer :all]
             [clojure-ttt.board.board :as board]))
 (describe "ttt-rules"
+  (describe "#determine-winner"
+    (it "returns tie when there is no winner"
+      (should= "tie"
+               (determine-winner [["Player 1" "X"]["Player 2" "O"]]
+                                 ["O" "X" "O" "X" "X" "O" "O" "O" "X"])))
+    (it "returns the current piece when there is a winner"
+      (should= "X"
+               (determine-winner [["Player 1" "X"]["Player 2" "O"]]
+                                 ["X" "X" "X" "O" "O" 6 7 8 9]))))
   (describe "#filter-by-index"
     (it "returns the coll of values at the indexes given"
       (should= [1 5 9]

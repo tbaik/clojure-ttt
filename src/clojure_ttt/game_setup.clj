@@ -1,5 +1,6 @@
 (ns clojure-ttt.game-setup
-  (:require [clojure-ttt.ui :as ui]))
+  (:require [clojure-ttt.ui :as ui]
+            [clojure-ttt.ttt-game :as game]))
 
 (defn build-opponent []
   (let [opponent-input (ui/prompt-human-or-ai)]
@@ -10,15 +11,12 @@
               (ui/print-invalid-input-error)
               (build-opponent)))))
 
-(defn exit-system []
-  (System/exit 0))
-
 (defn build-turn []
   (let [turn-input (ui/prompt-turn)]
     (cond
       (= "1" turn-input) "X"
       (= "2" turn-input) "O"
-      (= "3" turn-input) (exit-system)
+      (= "3" turn-input) (game/exit-system)
       :else (do
               (ui/print-invalid-input-error)
               (build-turn)))))

@@ -1,8 +1,16 @@
 (ns clojure-ttt.ttt-rules
-  (:require [clojure-ttt.board.board :as board]))
+  (:require [clojure-ttt.board.board :as board]
+            [clojure-ttt.player.players :as players]))
+
+(declare has-winner?)
+
+(defn determine-winner [players board]
+  (if (has-winner? board)
+    (players/current-player-piece players)
+    "tie"))
 
 (defn filter-by-index [indexes coll]
-    (keep-indexed #(when ((set indexes) %1) %2) coll))
+  (keep-indexed #(when ((set indexes) %1) %2) coll))
 
 (defn contains-same-pieces [coll]
   (apply = coll))

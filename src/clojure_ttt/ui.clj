@@ -30,3 +30,6 @@
 
 (defn prompt-turn []
   (io/prompt "Type 1 to go First(X), 2 to go Second(O), or 3 to exit."))
+
+(defn prompt-game-over-options []
+  (io/prompt "Type 1 to start a new game, 2 to Undo last move, or 3 to exit."))

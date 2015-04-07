@@ -37,7 +37,7 @@
   (describe "#print-board"
     (it "prints the current board"
       (should= "     |     |     |\n  1  |  2  |  3  |\n     |     |     |\n------------------\n     |     |     |\n  4  |  5  |  6  |\n     |     |     |\n------------------\n     |     |     |\n  7  |  8  |  9  |\n     |     |     |\n------------------\n\n"
-              (with-out-str (print-board [1 2 3 4 5 6 7 8 9])))))
+               (with-out-str (print-board [1 2 3 4 5 6 7 8 9])))))
 
   (describe "#print-winner"
     (it "prints for when there is a tie"
@@ -55,5 +55,8 @@
   (describe "#prompt-turn"
     (it "prints correct text and takes an input"
       (should= "Type 1 to go First(X), 2 to go Second(O), or 3 to exit.\n"
-               (with-out-str (with-in-str "2" (prompt-turn)))))))
-
+               (with-out-str (with-in-str "2" (prompt-turn))))))
+  (describe "#prompt-game-over-options"
+    (it "prints correct text and takes an input"
+      (should= "Type 1 to start a new game, 2 to Undo last move, or 3 to exit.\n"
+               (with-out-str (with-in-str "1" (prompt-game-over-options)))))))
